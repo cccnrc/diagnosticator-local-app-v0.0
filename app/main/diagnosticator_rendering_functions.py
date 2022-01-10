@@ -1,6 +1,6 @@
 import redis_functions
 from flask import current_app
-
+import collections
 
 def get_classes_dict ():
     '''
@@ -85,9 +85,6 @@ def get_ACMG_subclass_dict():
 
 
 ################################################################
-
-
-
 def getSamplesHTMLdict( sample_dict, variant_dict ):
     '''
         this takes sample and variant dict and returns a dict with the values I need for HTML display
@@ -109,6 +106,7 @@ def getSamplesHTMLdict( sample_dict, variant_dict ):
         except:
             status = 'NA'
         result_dict.update({ sample_name : { 'varN' : varN, 'pN' : pN, 'kN' : kN, 'status' : status } })
+    result_dict = collections.OrderedDict(sorted(result_dict.items()))
     return( result_dict )
 
 

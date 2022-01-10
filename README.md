@@ -69,8 +69,10 @@ docker push cccnrc/diagnosticator:0.11
 ################################
 ####### DOCKER-COMPOSE #########
 ################################
+NAME="$(basename "$(pwd)")"
+docker-compose down
 docker-compose rm -v
-docker volume rm diagnosticator-local-simple-algorithm-development-02-nomysql_DX-UPLOAD
-docker volume rm diagnosticator-local-simple-algorithm-development-02-nomysql_DX-DB
+docker volume rm ${NAME}_DX-UPLOAD
+docker volume rm ${NAME}_DX-DB
 docker-compose up --build --force-recreate --renew-anon-volumes
 ```
